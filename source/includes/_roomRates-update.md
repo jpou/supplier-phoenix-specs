@@ -79,6 +79,97 @@
 }
 ````
 
+> Ejemplo RoomRatesUpdateRequest dónde únicamente se actualizan mealPlans (precios y restricciones, sin inventario)
+&nbsp;&nbsp;<span class="postman-button">[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/495ff7995b655b745365)</span>
+
+````xml
+<?xml version="1.0" encoding="UTF-8"?>
+<RoomRatesUpdateRequest>
+    <credentials>
+        <systemCode>SFO</systemCode>
+        <vendorCode>FOO</vendorCode>
+        <user>BAR</user>
+        <password>FOOBAR</password>
+    </credentials>
+    <hotelCode>1234</hotelCode>
+    <rate rateCode="BASE">
+        <room roomCode="DBL#STD">
+            <roomRateDate dateFrom="01/01/2016" dateTo="07/01/2016">
+                <mealPlan code="RO">
+                    <minimumStay>2</minimumStay>
+                    <maximumStay>7</maximumStay>
+                    <closedOnCheckIn>false</closedOnCheckIn>
+                    <closedOnCheckOut>false</closedOnCheckOut>
+                    <release>0</release>
+                    <price>
+                        <adults>2</adults>
+                        <children>0</children>
+                        <amount>100.0</amount>
+                        <status>Open</status>
+                    </price>
+                    <price>
+                        <adults>2</adults>
+                        <children>1</children>
+                        <amount>125.0</amount>
+                        <status>Open</status>
+                    </price>
+                </mealPlan>                
+            </roomRateDate>            
+        </room>
+    </rate>
+</RoomRatesUpdateRequest>
+````
+
+````json
+{
+  "RoomRatesUpdateRequest": {
+    "credentials": {
+      "systemCode": "SFO",
+      "vendorCode": "FOO",
+      "user": "BAR",
+      "password": "FOOBAR"
+    },
+    "hotelCode": "1234",
+    "rate": {
+      "rateCode": "BASE",
+      "room": {
+        "roomCode": "DBL#STD",
+        "roomRateDate": [
+          {
+            "dateFrom": "01/01/2016",
+            "dateTo": "07/01/2016",
+            "mealPlan": [
+              {
+                "code": "RO",
+                "minimumStay": "2",
+                "maximumStay": "7",
+                "closedOnCheckIn": "false",
+                "closedOnCheckOut": "false",
+                "release": "0",
+                "price": [
+                  {
+                    "adults": "2",
+                    "children": "0",
+                    "amount": "100.0",
+                    "status": "Open"
+                  },
+                  {
+                    "adults": "2",
+                    "children": "1",
+                    "amount": "125.0",
+                    "status": "Open"
+                  }
+                ]
+              }          
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
+````
+
 > Ejemplo RoomRatesUpdateRequest actualizando inventario, precios y restricciones para los régimenes RO y BB de la tarifa BASE, modalidad DBL#STD
 &nbsp;&nbsp;<span class="postman-button">[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/495ff7995b655b745365)</span>
 
@@ -284,7 +375,10 @@
 ````
 
 Mensaje utilizado para la actualización de inventario y tarifas (precios, paros de venta y restricciones) de un hotel.
-Si únicamente se quiere actualizar inventario, no será necesario informar mealPlan
+Se puede actualizar: 
+- Únicamente inventario: Informar los tags availableQuota y status pero no será necesario informar mealPlan.<br/>
+- Únicamente precios y restricciones (sin inventario): Informar mealPlan pero no será necesario informar los tags availableQuota y status.<br/>
+- Inventario, precios y restricciones en conjunto: Se tendrán que informar los tags availableQuota, status y mealPlan.<br/>
 
 ### RoomRatesUpdateRequest
 
@@ -300,9 +394,9 @@ roomRate[] | **RoomRate** | Sí | Información asociada a una combinación de ta
 ↳ roomRateDate| **RomRateDate** | Sí | Información relativa a un rango de fechas
 ↳↳ @dateFrom| *Date* | Sí | Fecha desde (dd/MM/yyyy, rangos cerrados)
 ↳↳ @dateTo| *Date* | Sí | Fecha hasta (dd/MM/yyyy, rangos cerrados)
-↳↳ availableQuota| *Integer* | Sí | Unidades de cupo disponible
-↳↳ status| *Enum* | Sí | Estado del inventario <sup>1</sup> 
-↳↳ mealPlan[]| **MealPlan** | No | Información asociada al régimen alimenticio
+↳↳ availableQuota| *Integer* | No<sup>1</sup> | Unidades de cupo disponible
+↳↳ status| *Enum* | No<sup>1</sup> | Estado del inventario
+↳↳ mealPlan[]| **MealPlan** | No<sup>2</sup> | Información asociada al régimen alimenticio
 ↳↳↳ @code| *String* | Sí | Código de régimen alimenticio
 ↳↳↳ minimumStay| *Integer* | Sí | Días de estancia mínima (0: No hay estancia mínima)
 ↳↳↳ maximumStay| *Integer* | Sí | Días de estancia máxima (0: No hay límite de estancia)
@@ -327,3 +421,10 @@ notification | **Notification** | No |Información de notificación (Error o War
 ↳ code | *String* | Sí | Código de la notificación
 ↳ text | *String* | Sí | Texto descriptivo de la notificación
 
+<aside class="notice">
+<sup>1</sup>&nbsp;&nbsp;&nbsp; Si se quiere actualizar la información del inventario los tags availableQuota y status son obligatorios.
+</aside>
+
+<aside class="notice">
+<sup>2</sup>&nbsp;&nbsp;&nbsp; Si se quiere actualizar la información de precios y restricciones el tag mealPlan es obligatorio.
+</aside>
