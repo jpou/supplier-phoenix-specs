@@ -808,6 +808,93 @@ En el caso de que el hotel utilice varios, con el inventoryCode se podrá distin
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
+<p>Ejemplo RoomRatesUpdateRequest dónde únicamente se actualizan mealPlans (precios y restricciones, sin inventario)
+&nbsp;&nbsp;<span class="postman-button"><a href="https://app.getpostman.com/run-collection/495ff7995b655b745365"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></span></p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;RoomRatesUpdateRequest&gt;</span>
+    <span class="nt">&lt;credentials&gt;</span>
+        <span class="nt">&lt;systemCode&gt;</span>SFO<span class="nt">&lt;/systemCode&gt;</span>
+        <span class="nt">&lt;vendorCode&gt;</span>FOO<span class="nt">&lt;/vendorCode&gt;</span>
+        <span class="nt">&lt;user&gt;</span>BAR<span class="nt">&lt;/user&gt;</span>
+        <span class="nt">&lt;password&gt;</span>FOOBAR<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/credentials&gt;</span>
+    <span class="nt">&lt;hotelCode&gt;</span>1234<span class="nt">&lt;/hotelCode&gt;</span>
+    <span class="nt">&lt;rate</span> <span class="na">rateCode=</span><span class="s">"BASE"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;room</span> <span class="na">roomCode=</span><span class="s">"DBL#STD"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;roomRateDate</span> <span class="na">dateFrom=</span><span class="s">"01/01/2016"</span> <span class="na">dateTo=</span><span class="s">"07/01/2016"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;mealPlan</span> <span class="na">code=</span><span class="s">"RO"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;minimumStay&gt;</span>2<span class="nt">&lt;/minimumStay&gt;</span>
+                    <span class="nt">&lt;maximumStay&gt;</span>7<span class="nt">&lt;/maximumStay&gt;</span>
+                    <span class="nt">&lt;closedOnCheckIn&gt;</span>false<span class="nt">&lt;/closedOnCheckIn&gt;</span>
+                    <span class="nt">&lt;closedOnCheckOut&gt;</span>false<span class="nt">&lt;/closedOnCheckOut&gt;</span>
+                    <span class="nt">&lt;release&gt;</span>0<span class="nt">&lt;/release&gt;</span>
+                    <span class="nt">&lt;price&gt;</span>
+                        <span class="nt">&lt;adults&gt;</span>2<span class="nt">&lt;/adults&gt;</span>
+                        <span class="nt">&lt;children&gt;</span>0<span class="nt">&lt;/children&gt;</span>
+                        <span class="nt">&lt;amount&gt;</span>100.0<span class="nt">&lt;/amount&gt;</span>
+                        <span class="nt">&lt;status&gt;</span>Open<span class="nt">&lt;/status&gt;</span>
+                    <span class="nt">&lt;/price&gt;</span>
+                    <span class="nt">&lt;price&gt;</span>
+                        <span class="nt">&lt;adults&gt;</span>2<span class="nt">&lt;/adults&gt;</span>
+                        <span class="nt">&lt;children&gt;</span>1<span class="nt">&lt;/children&gt;</span>
+                        <span class="nt">&lt;amount&gt;</span>125.0<span class="nt">&lt;/amount&gt;</span>
+                        <span class="nt">&lt;status&gt;</span>Open<span class="nt">&lt;/status&gt;</span>
+                    <span class="nt">&lt;/price&gt;</span>
+                <span class="nt">&lt;/mealPlan&gt;</span>                
+            <span class="nt">&lt;/roomRateDate&gt;</span>            
+        <span class="nt">&lt;/room&gt;</span>
+    <span class="nt">&lt;/rate&gt;</span>
+<span class="nt">&lt;/RoomRatesUpdateRequest&gt;</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"RoomRatesUpdateRequest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"credentials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"systemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SFO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vendorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAR"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOOBAR"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"hotelCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"rateCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BASE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"room"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"roomCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBL#STD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"roomRateDate"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dateFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01/2016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dateTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mealPlan"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"minimumStay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"maximumStay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closedOnCheckIn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closedOnCheckOut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"release"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"adults"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"adults"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"125.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">          
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Ejemplo RoomRatesUpdateRequest actualizando inventario, precios y restricciones para los régimenes RO y BB de la tarifa BASE, modalidad DBL#STD
 &nbsp;&nbsp;<span class="postman-button"><a href="https://app.getpostman.com/run-collection/495ff7995b655b745365"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></span></p>
 </blockquote>
@@ -1004,7 +1091,10 @@ En el caso de que el hotel utilice varios, con el inventoryCode se podrá distin
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Mensaje utilizado para la actualización de inventario y tarifas (precios, paros de venta y restricciones) de un hotel.
-Si únicamente se quiere actualizar inventario, no será necesario informar mealPlan</p>
+Se puede actualizar: 
+- Únicamente inventario: Informar los tags availableQuota y status pero no será necesario informar mealPlan.<br/>
+- Únicamente precios y restricciones (sin inventario): Informar mealPlan pero no será necesario informar los tags availableQuota y status.<br/>
+- Inventario, precios y restricciones en conjunto: Se tendrán que informar los tags availableQuota, status y mealPlan.<br/></p>
 
 <h3 id="roomratesupdaterequest">RoomRatesUpdateRequest</h3>
 
@@ -1069,19 +1159,19 @@ Si únicamente se quiere actualizar inventario, no será necesario informar meal
 <tr>
 <td>↳↳ availableQuota</td>
 <td><em>Integer</em></td>
-<td>Sí</td>
+<td>No<sup>1</sup></td>
 <td>Unidades de cupo disponible</td>
 </tr>
 <tr>
 <td>↳↳ status</td>
 <td><em>Enum</em></td>
-<td>Sí</td>
-<td>Estado del inventario <sup>1</sup></td>
+<td>No<sup>1</sup></td>
+<td>Estado del inventario</td>
 </tr>
 <tr>
 <td>↳↳ mealPlan[]</td>
 <td><strong>MealPlan</strong></td>
-<td>No</td>
+<td>No<sup>2</sup></td>
 <td>Información asociada al régimen alimenticio</td>
 </tr>
 <tr>
@@ -1195,6 +1285,14 @@ Si únicamente se quiere actualizar inventario, no será necesario informar meal
 <td>Texto descriptivo de la notificación</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+<sup>1</sup>&nbsp;&nbsp;&nbsp; Si se quiere actualizar la información del inventario los tags availableQuota y status son obligatorios.
+</aside>
+
+<aside class="notice">
+<sup>2</sup>&nbsp;&nbsp;&nbsp; Si se quiere actualizar la información de precios y restricciones el tag mealPlan es obligatorio.
+</aside>
 
           <h1 id="roomratesretrieval">RoomRatesRetrieval</h1>
 
