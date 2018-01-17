@@ -392,9 +392,21 @@ booking[] | **Booking** | No | Información de una reserva de hotel
 ↳↳ guestId[]| *Integer* | No | Identificador del pasajero al que se hace referencia, si el suplemento referencia a un pasajero/os en concreto
 ↳↳ amount| *Double* | Sí | Importe total del suplemento opcional reservado
 ↳↳ mandatory| *Boolean* | Sí | Indica si el suplemento es obligatorio (true) o opcional (false)
-↳ paymentCardDetail| **PaymentCardDetail** | No | Detalles de la tarjeta que ha realizado el pago
+↳ bookingPayment| **BookingPayment** | No | Información del pago de la reserva<sup>1</sup>
+↳↳ modality| *Enum* | Sí | Modalidad de pago (Establishment / Inmediate / Deferred / CancelPenalty / Instalment / ExternManagement)
+↳↳ type| *Enum* | Sí | Tipo de pago (BankTransfer / Card / VirtualCard / PrepaidCard / WarrantyCard / Cash / Cheque / Credit / Voucher / ExternalManaged / PinPad)
+↳↳ status| *Enum* | Sí | Estado de pago (Pending / Ok / Error / Cancelled / Inapplicable)
+↳ paymentCardDetail| **PaymentCardDetail** | No | Detalles de la tarjeta que ha realizado el pago (sólo viene informado si bookingPayment.type es Card, PrepaidCard, VirtualCard o WarrantyCard)
 ↳↳ holder| *String* | Sí | Nombre del titular de la tarjeta
 ↳↳ number| *String* | Sí | Número de la tarjeta
 ↳↳ expiryDate| *Date* | Sí | Fecha de caducidad (dd/MM/yyy)
 ↳↳ securityCode| *String* | Sí | Código de seguridad (cvc2)
 
+<aside class="notice">
+<sup>1</sup>&nbsp;&nbsp;&nbsp; Ejemplos: 
+<ul>
+   <li>Pago con tarjeta de garantía, pendiente de cobro, a cobrar en establecimiento. modality: Establishment, type: WarrantyCard, status: Pending</li>
+   <li>Pago inmediato, cobrado a traves de una pasarela de pago externa. modality: Inmediate, type: ExternalManaged, status: Ok</li>
+   <li>Pago a crédito, acordado con la agencia. modality: ExternManagement, type: Credit, status: Inapplicable</li>
+</ul>
+</aside>
