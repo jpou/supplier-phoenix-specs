@@ -171,6 +171,11 @@ La reserva recuperada contiene dos habitaciones: 1 doble + 1 individual
             <to>Hotel</to>
             <text>Por favor, habitaciones no fumadores</text>
         </remark>
+        <bookingPayment>
+            <modality>Establishment</modality>
+            <type>WarrantyCard</type>
+            <status>Pending</status>
+        </bookingPayment>
         <paymentCardDetail>
             <holder>Elena Ballester</holder>
             <number>4111111111111111</number>
@@ -304,7 +309,12 @@ La reserva recuperada contiene dos habitaciones: 1 doble + 1 individual
           "to": "Hotel",
           "text": "Por favor, habitaciones no fumadores"
         }
-      ],
+      ],            
+      "bookingPayment": {
+        "modality": "Establishment",
+        "type": "WarrantyCard",
+        "status": "Pending"
+      },
       "paymentCardDetail": {
         "holder": "Elena Ballester",
         "number": "4111111111111111",
