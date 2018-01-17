@@ -2437,10 +2437,34 @@ o bien las reservas de un hotel creadas, canceladas o modificadas dentro de un r
 <td>Indica si el suplemento es obligatorio (true) o opcional (false)</td>
 </tr>
 <tr>
+<td>↳ bookingPayment</td>
+<td><strong>BookingPayment</strong></td>
+<td>No</td>
+<td>Información del pago de la reserva<sup>1</sup></td>
+</tr>
+<tr>
+<td>↳↳ modality</td>
+<td><em>Enum</em></td>
+<td>Sí</td>
+<td>Modalidad de pago (Establishment / Inmediate / Deferred / CancelPenalty / Instalment / ExternManagement)</td>
+</tr>
+<tr>
+<td>↳↳ type</td>
+<td><em>Enum</em></td>
+<td>Sí</td>
+<td>Tipo de pago (BankTransfer / Card / VirtualCard / PrepaidCard / WarrantyCard / Cash / Cheque / Credit / Voucher / ExternalManaged / PinPad)</td>
+</tr>
+<tr>
+<td>↳↳ status</td>
+<td><em>Enum</em></td>
+<td>Sí</td>
+<td>Estado de pago (Pending / Ok / Error / Cancelled / Inapplicable)</td>
+</tr>
+<tr>
 <td>↳ paymentCardDetail</td>
 <td><strong>PaymentCardDetail</strong></td>
 <td>No</td>
-<td>Detalles de la tarjeta que ha realizado el pago</td>
+<td>Detalles de la tarjeta que ha realizado el pago (sólo viene informado si bookingPayment.type es Card, PrepaidCard, VirtualCard o WarrantyCard)</td>
 </tr>
 <tr>
 <td>↳↳ holder</td>
@@ -2467,6 +2491,15 @@ o bien las reservas de un hotel creadas, canceladas o modificadas dentro de un r
 <td>Código de seguridad (cvc2)</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+<sup>1</sup>&nbsp;&nbsp;&nbsp; Ejemplos: 
+<ul>
+   <li>Pago con tarjeta de garantía, pendiente de cobro, a cobrar en establecimiento. modality: Establishment, type: WarrantyCard, status: Pending</li>
+   <li>Pago inmediato, cobrado a traves de una pasarela de pago externa. modality: Inmediate, type: ExternalManaged, status: Ok</li>
+   <li>Pago a crédito, acordado con la agencia. modality: ExternManagement, type: Credit, status: Inapplicable</li>
+</ul>
+</aside>
 
           <h1 id="notificaci-n-de-reservas-push">Notificación de reservas PUSH</h1>
 
