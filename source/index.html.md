@@ -19,6 +19,7 @@ includes:
   - roomRates-update
   - roomRates-retrieval
   - booking-retrieval
+  - extraCustomData
   - booking-notification
 
 search: true
