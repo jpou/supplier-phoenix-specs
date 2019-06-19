@@ -13,7 +13,9 @@
         <password>FOOBAR</password>
     </credentials>   
     <hotelCode>1234</hotelCode>
-    <rateCode>BASE</rateCode>    
+    <rateCode>BASE</rateCode>
+   <dateFrom>01/01/2017</dateFrom>
+   <dateTo>31/01/2017</dateTo>    
 </RoomRatesRetrievalRequest>
 ````
 
@@ -306,6 +308,8 @@ Elemento | Tipo | Obl? |  Descripción
 credentials | **Credentials** | Sí |Credenciales de autenticación del usuario (Ver Autenticación)
 hotelCode | *Integer* | Sí | Código de hotel
 rateCode[] | *String* | No | Código de tarifa
+dateFrom| *Date* | No | Fecha desde (dd/MM/yyyy, rangos cerrados)
+dateTo| *Date* | No | Fecha hasta (dd/MM/yyyy, rangos cerrados)
 
 ### RoomRatesRetrievalResponse
 
