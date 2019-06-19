@@ -14,8 +14,8 @@
     </credentials>   
     <hotelCode>1234</hotelCode>
     <rateCode>BASE</rateCode>
-   <dateFrom>01/01/2017</dateFrom>
-   <dateTo>31/01/2017</dateTo>    
+    <dateFrom>01/01/2017</dateFrom>
+    <dateTo>31/01/2017</dateTo>    
 </RoomRatesRetrievalRequest>
 ````
 
